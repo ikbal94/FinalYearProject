@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MyLondon</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Start MyCity -->
+    <script src="mycity.js"></script>
+    <link rel="stylesheet" href="mycity.css" />
+    <!-- End MyCity -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+     mycity.run({
+     handleFeatureClick: function(event, oa, lsoa, subLayer, summary, boundaries) {
+    var apiServer = "http://api.datapress.io";
+
+    var resource_ids = {
+      "MyLondonSchoolsCatchmentv2"             : "98ec0962-af1a-49ad-ac10-47606f7794da",
+    }
+
+    Promise.all(
+      [
+        mycity.getFromDataStore(apiServer, 'modelled_OA_rents', 'OA11CD', oa, resource_ids),
+      ]
+    ).then(function(result) {
+      // Replace this with your popup visualisation
+
+      console.log(result);
+      alert('Data loaded, see console.');
+    });
+  }
+});
+
+
+
+     
+    </script>
+  </body>
+</html>
